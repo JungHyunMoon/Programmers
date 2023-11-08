@@ -20,11 +20,7 @@ class Solution {
         answer += s.charAt(end);
         return answer;
         
-        // 5
-        // 1로 빼고 나누면 2
-        // 2로 나누면 2.5
-        // 4
-        // 1로 빼고 나누면 1
-        // 2로 나누면 2
+        // 엄청난 속도...!
+        // return word.substring((word.length()-1)/2, word.length()/2 + 1);
     }
 }
