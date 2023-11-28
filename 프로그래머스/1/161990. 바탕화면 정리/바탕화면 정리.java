@@ -1,37 +1,19 @@
 class Solution {
     public int[] solution(String[] wallpaper) {
-        int minLeft = wallpaper[0].length();
-        int maxRigth = 0;
-        int top = 0;
-        int bottom = wallpaper.length;
-        for (String grid : wallpaper) {
-            int minLeftPoint = grid.indexOf("#");
-            if (minLeftPoint != -1 && minLeftPoint < minLeft) {
-                minLeft = minLeftPoint;
-            }
-            int maxRightPoint = grid.lastIndexOf("#") + 1;
-            if (maxRightPoint > maxRigth) {
-                maxRigth = maxRightPoint;
-            }
-        }
-
-        for (String grid : wallpaper) {
-            if (!grid.contains("#")) {
-                top++;
-            } else {
-                break;
+        int left = 99;
+        int rigth = -1;
+        int top = 99;
+        int bottom = -1;
+        for(int i=0; i< wallpaper.length;i++ ){
+            for(int j=0; j<wallpaper[i].length();j++){
+                if(wallpaper[i].charAt(j)=='#'){
+                    top = Math.min(top,i);
+                    left = Math.min(left,j);
+                    bottom = Math.max(bottom,i);
+                    rigth = Math.max(rigth,j);
+                }
             }
         }
-
-        for (int i = wallpaper.length - 1; i > 0; i--) {
-            if (!wallpaper[i].contains("#")) {
-                bottom--;
-            } else {
-                break;
-            }
-        }
-
-
-        return new int[]{top, minLeft, bottom, maxRigth};
+        return new int[]{top, left, bottom + 1, rigth + 1};
     }
 }
